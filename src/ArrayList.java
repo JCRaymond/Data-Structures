@@ -71,7 +71,15 @@ public class ArrayList<E> {
 
 
     private void preLoadArray(double capMod){
-        preLoad = Arrays.copyOf(data, (int) (cap*capMod));
+        preLoad = (E[])(new Object[(int) (cap*capMod)]);
+        for (int i=0; i<size; i++){
+            preLoad[i] = data[i];
+            try {
+                Thread.sleep(0);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
         preLoaded = true;
     }
 
